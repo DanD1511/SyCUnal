@@ -9,6 +9,7 @@ from bokeh.layouts import column
 from bokeh.models import ColumnDataSource
 from bokeh.models import HoverTool
 from bokeh.plotting import figure
+import IPython
 
 # Transfer Function (tf)
 
@@ -20,6 +21,7 @@ def tf(num, den):
 
 def step(num, den):
 
+    output_notebook()
     tf1 = signal.TransferFunction(num, den)
     t, y = signal.step(tf1)
     #source = ColumnDataSource(data=dict(x=t, y=y))
@@ -33,9 +35,3 @@ def step(num, den):
 
     show(p)
 
-
-
-
-
-
-step([1, 2], [1, 2, 3])
