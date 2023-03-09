@@ -24,7 +24,7 @@ def step(num, den):
     output_notebook()
     tf1 = signal.TransferFunction(num, den)
     t, y = signal.step(tf1)
-    #source = ColumnDataSource(data=dict(x=t, y=y))
+    source = ColumnDataSource(data=dict(x=t, y=y))
 
     p = figure(title='Step Response', x_axis_label='Time', y_axis_label='Amplitud', width=1000, height=400)
 
