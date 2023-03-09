@@ -6,7 +6,7 @@ import bokeh
 from bokeh.layouts import column
 from bokeh.models import ColumnDataSource
 from bokeh.models import HoverTool
-from bokeh.plotting import figure
+from bokeh.plotting import figure, show
 
 # Transfer Function (tf)
 
@@ -26,7 +26,7 @@ def step(num, den):
 
     p.line(t, y, line_width=2)
 
-    bokeh.plotting.show(p)
+    show(p)
 
 
 
