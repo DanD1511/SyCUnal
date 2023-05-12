@@ -1,37 +1,32 @@
-import numpy as np
-import matplotlib.pyplot as plt
-import scipy; from scipy import signal
 import control
 import numpy as np
-import bokeh
-from bokeh.io import output_notebook, show
-from bokeh.layouts import column
-from bokeh.models import ColumnDataSource
-from bokeh.models import HoverTool
-from bokeh.plotting import figure
-import IPython
+import matplotlib.pyplot as plt
+from control.matlab import *
+import plotly.graph_objects as go
 
-# Transfer Function (tf)
-
-def tf(num, den):
-    G = control.TransferFunction(num,den)
-    return G
-
-# Step Response
-
-def step(num, den):
-
-    output_notebook()
-    tf1 = signal.TransferFunction(num, den)
-    t, y = signal.step(tf1)
-    source = ColumnDataSource(data=dict(x=t, y=y))
-
-    p = figure(title='Step Response', x_axis_label='Time', y_axis_label='Amplitud', width=1000, height=400)
-
-    p.line(t, y, line_width=2)
-
-    hover = HoverTool(tooltips=[("Tiempo", "@x"), ("Amplitud", "@y")])
-    p.add_tools(hover)
-
-    show(p)
+def rlocus(G):
+    # Calcular el lugar de las raíces
+    rlist, klist = rlocus(G, plot=False)
+    fig = go.Figure()
+    # Agregar los puntos correspondientes al lugar de las raíces
+    for i in range(len(rlist[0])):
+        real_part = np.real(rlist[:, i])
+        imag_part = np.imag(rlist[:, i])
+        fig.add_trace(go.Scatter(x=real_part, y=imag_part, mode='lines',
+                                 name=f'Raíz {i + 1}', hovertemplate='Real: %{x}<br>Imaginaria: %{y}'))
+    # Establecer las propiedades del diseño de la gráfica
+    fig.update_layout(
+        title='Lugar de las Raíces',
+        xaxis_title='Parte Real',
+        yaxis_title='Parte Imaginaria',
+        xaxis_range=[-5, 5],  # Especificar el rango del eje x
+        yaxis_range=[-5, 5],  # Especificar el rango del eje y
+        plot_bgcolor='white',  # Establecer el color de fondo blanco
+        xaxis=dict(gridcolor='lightgray', dtick=1, gridwidth=1, zeroline=False),  # Configurar el eje x
+        yaxis=dict(gridcolor='lightgray', dtick=1, gridwidth=1, zeroline=False)  # Configurar el eje y
+    )
+    # Agregar el hover para mostrar los polos y la ganancia
+    fig.update_traces(hovertemplate='Ganancia: %{text}', text=klist.flatten())
+    # Mostrar la gráfica interactiva
+    fig.show()
 
