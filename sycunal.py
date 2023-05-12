@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from control.matlab import *
 import plotly.graph_objects as go
 
-# root locations
+# root_locations
 
 def root_locations(G):
     # Calcular el lugar de las raíces
