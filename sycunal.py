@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 
 def root_locations(G):
     # Calcular el lugar de las raíces
-    rlist, klist = rlocus(G)
+    rlist, klist = rlocus(G, plot=False)
     fig = go.Figure()
     # Agregar los puntos correspondientes al lugar de las raíces
     for i in range(len(rlist[0])):
