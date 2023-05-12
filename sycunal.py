@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from control.matlab import *
 import plotly.graph_objects as go
 
-def rlocusyc(G):
+def root_locations(G):
     # Calcular el lugar de las raíces
     rlist, klist = rlocus(G)
     fig = go.Figure()
