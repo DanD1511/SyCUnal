@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 from control.matlab import *
 import plotly.graph_objects as go
 
+# root locations
+
 def root_locations(G):
     # Calcular el lugar de las raíces
     rlist, klist = rlocus(G)
@@ -30,3 +32,4 @@ def root_locations(G):
     # Mostrar la gráfica interactiva
     fig.show()
 
+##
