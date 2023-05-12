@@ -51,7 +51,6 @@ def mssperiod(y, t):
     delta_t = t[max1_idx] - t[max2_idx]
 
     # Mostrar el resultado
-    return print(f"Diferencia de tiempo entre los máximos: {delta_t:.2f} segundos")
-
+    return print(f"el periodo de la onda es de: {delta_t:.2f} segundos")
 ##
 
