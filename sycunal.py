@@ -33,3 +33,25 @@ def root_locations(G):
     fig.show()
 
 ##
+
+# period of a marginally stable system
+
+def mssperiod(y, t):
+    # Encontrar los índices de los máximos locales
+    max_indices = np.where(np.diff(np.sign(np.diff(y))) == -2)[0]
+
+    # Ordenar los máximos locales por magnitud descendente
+    sorted_indices = np.argsort(y[max_indices])[::-1]
+
+    # Obtener los índices de los dos máximos consecutivos más altos
+    max1_idx = max_indices[sorted_indices[0]]
+    max2_idx = max_indices[sorted_indices[1]]
+
+    # Calcular la diferencia entre los tiempos de los dos máximos
+    delta_t = t[max1_idx] - t[max2_idx]
+
+    # Mostrar el resultado
+    return print(f"Diferencia de tiempo entre los máximos: {delta_t:.2f} segundos")
+
+##
+
