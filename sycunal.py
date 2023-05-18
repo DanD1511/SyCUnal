@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 
 # root_locations
 
-def root_locations(G):
+def rlocus_(G):
     # Calcular el lugar de las raíces
     rlist, klist = rlocus(G, plot=False)
     fig = go.Figure()
